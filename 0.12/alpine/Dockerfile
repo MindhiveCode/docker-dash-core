@@ -77,7 +77,7 @@ RUN ./configure LDFLAGS=-L`ls -d /opt/db*`/lib/ CPPFLAGS=-I`ls -d /opt/db*`/incl
   --with-utils \
   --with-libs \
   --with-daemon
-RUN make -j4
+RUN make
 RUN make install
 RUN strip ${DASH_PREFIX}/bin/dash-cli
 RUN strip ${DASH_PREFIX}/bin/dash-tx
