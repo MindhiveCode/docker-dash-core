@@ -1,13 +1,13 @@
-# MindhiveCode/docker-dash-core
+# uphold/docker-dash-core
 
-A Dash Core docker image based on the Uphold image available on Github at uphold/docker-dash-core. It builds from source and takes quite a while.
+A Dash Core docker image.
 
-[![uphold/dash-core][docker-pulls-image]][docker-hub-url] [![uphold/dash-core][docker-stars-image]][docker-hub-url] [![uphold/dash-core][docker-size-image]][docker-hub-url] [![uphold/dash-core][docker-layers-image]][docker-hub-url]
+[![jefethechefe/docker-dashd-nexus][docker-pulls-image]][docker-hub-url] [![jefethechefe/docker-dashd-nexus][docker-stars-image]][docker-hub-url] [![jefethechefe/docker-dashd-nexus][docker-size-image]][docker-hub-url] [![jefethechefe/docker-dashd-nexus][docker-layers-image]][docker-hub-url]
 
 ## Tags
 
 - `0.12.3.3-alpine`, `0.12-alpine`, `alpine`, `latest` ([0.12/alpine/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.12/alpine/Dockerfile))
-- `0.12.3.3`, `0.12`  ([0.12/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.12/Dockerfile))
+- `0.12.3.3`, `0.12`  ([0.12/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.12/Dockerfile))
 
 ## What is Dash?
 _from [dashwiki](https://github.com/dashpay/dash/wiki)_
@@ -153,7 +153,15 @@ Done!
 
 ## Image variants
 
-The `MindhiveCode/docker-dash-core` image is built off the latest Alpine version.
+The `uphold/dash-core` image comes in multiple flavors:
+
+### `uphold/dash-core:latest`
+
+Points to the latest release available of Dash Core. Occasionally pre-release versions will be included.
+
+### `uphold/dash-core:<version>`
+
+Based on Alpine Linux with Berkeley DB 4.8 (cross-compatible build), targets a specific version branch or release of Dash Core.
 
 ## Supported Docker versions
 
@@ -165,7 +173,7 @@ This image is officially supported on Docker version 1.12, with support for olde
 
 [License information](https://github.com/uphold/docker-dash-core/blob/master/LICENSE) for the [uphold/dash-core][docker-hub-url] docker project.
 
-[docker-hub-url]: https://hub.docker.com/r/jefethechefe/docker-dashd-nexus/
+[docker-hub-url]: https://hub.docker.com/r/uphold/dash-core
 [docker-layers-image]: https://img.shields.io/imagelayers/layers/uphold/dash-core/latest.svg?style=flat-square
 [docker-pulls-image]: https://img.shields.io/docker/pulls/uphold/dash-core.svg?style=flat-square
 [docker-size-image]: https://img.shields.io/imagelayers/image-size/uphold/dash-core/latest.svg?style=flat-square
