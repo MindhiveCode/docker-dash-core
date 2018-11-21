@@ -42,16 +42,6 @@ RUN apk --no-cache add linux-headers
 RUN apk --no-cache add protobuf-dev
 RUN apk --no-cache add zeromq-dev
 
-RUN set -ex \
-  && for key in \
-    38EE12EB597B4FC0 \
-  ; do \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
-    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
-    gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" ; \
-  done
-
 ENV DASH_VERSION=0.12.3.3
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
 ENV DASH_SHASUM="dc8035a26228d4963a0fa59f74d787d0b4f79c897e8869f8fd80052bef31a394  v${DASH_VERSION}.tar.gz"
@@ -90,7 +80,9 @@ FROM alpine
 
 LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
   maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)"
+  maintainer.2="Rui Marinho (@ruimarinho)" \
+  maintainer.3="Jeff Hodges (@jhodges10)" \
+  maintainer.4="Samuel Prado (@skateonrails)"
 
 RUN adduser -S dash
 RUN apk --no-cache add \
