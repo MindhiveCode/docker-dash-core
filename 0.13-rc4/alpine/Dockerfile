@@ -53,32 +53,6 @@ RUN set -x \
 
 RUN ls -la ${CHIA_BLS_PREFIX}
 
-# RUN mkdir -p ${BERKELEYDB_PREFIX}
-
-# RUN set -x \
-#   && git clone https://github.com/Chia-Network/bls-signatures.git bls-signatures \
-#   && cd bls-signatures \
-#   && git submodule update --init --recursive \
-#   && mkdir build \
-#   && cd build \
-#   && cmake -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_C_FLAGS_DEBUG="-g -O1" ../ \
-#   && cmake --build . -- -j 6
-# RUN ls -lah /bls-signatures/
-# RUN ls -lah /bls-signatures/build/
-# RUN ls -lah /bls-signatures/build/src
-
-# RUN wget https://download.oracle.com/berkeley-db/${BERKELEYDB_VERSION}.tar.gz
-# RUN tar -xzf *.tar.gz
-# RUN sed s/__atomic_compare_exchange/__atomic_compare_exchange_db/g -i ${BERKELEYDB_VERSION}/dbinc/atomic.h
-# RUN mkdir -p ${BERKELEYDB_PREFIX}
-
-# WORKDIR /${BERKELEYDB_VERSION}/build_unix
-
-# RUN ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=${BERKELEYDB_PREFIX}
-# RUN make -j4
-# RUN make install
-# RUN rm -rf ${BERKELEYDB_PREFIX}/docs
-
 # Build stage for Dash
 FROM alpine as dash
 
@@ -156,7 +130,7 @@ RUN apk --no-cache add \
   su-exec
 
 ENV DASH_DATA=/home/dash/.dashcore
-ENV DASH_VERSION=0.12.3.3
+ENV DASH_VERSION=0.13.0.0-rc4
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
 ENV PATH=${DASH_PREFIX}/bin:$PATH
 
