@@ -142,9 +142,8 @@ RUN strip ${DASH_PREFIX}/lib/libdashconsensus.so.0.0.0
 # Build stage for compiled artifacts
 FROM alpine
 
-LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
-  maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)"
+LABEL maintainer.0="Jeff Hodges (@jhodges10)" \
+  maintainer.1="Samuel Prado (@skateonrails)"
 
 RUN adduser -S dash
 RUN apk --no-cache add \
