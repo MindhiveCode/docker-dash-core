@@ -8,8 +8,8 @@ A Dash Core docker image.
 
 - `0.12.3.3-alpine`, `0.12-alpine`, `alpine`, `latest` ([0.12/alpine/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.12/alpine/Dockerfile))
 - `0.12.3.3`, `0.12`  ([0.12/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.12/Dockerfile))
-- `0.13.0.0-rc4-alpine`, `0.13-rc4-alpine` ([0.13-rc4/alpine/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.13-rc4/alpine/Dockerfile))
-- `0.13.0.0-rc4`, `0.13-rc4`  ([0.13-rc4/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.13-rc4/Dockerfile))
+- `0.13.0.0-rc4-alpine`, `0.13-rc4-alpine` ([0.13-rc4/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13-rc4/alpine/Dockerfile))
+- `0.13.0.0-rc4`, `0.13-rc4`  ([0.13-rc4/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13-rc4/Dockerfile))
 
 ## What is Dash?
 _from [dashwiki](https://github.com/dashpay/dash/wiki)_
