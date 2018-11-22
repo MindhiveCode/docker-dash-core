@@ -21,10 +21,43 @@ RUN make -j4
 RUN make install
 RUN rm -rf ${BERKELEYDB_PREFIX}/docs
 
+FROM alpine as chiabls
+
+RUN apk --no-cache add autoconf
+RUN apk --no-cache add automake
+RUN apk --no-cache add build-base
+RUN apk --no-cache add libressl
+RUN apk --no-cache add git
+RUN apk --no-cache add cmake
+RUN apk --no-cache add python3-dev
+
+ENV CHIA_BLS_PREFIX=/opt/chiabls
+
+RUN set -x \
+  && git clone https://github.com/codablock/bls-signatures.git bls-signatures \
+  && cd bls-signatures \
+  && git fetch origin \
+  && git checkout dash \
+  && git submodule update --init --recursive \
+  && mkdir build \
+  && cd build \
+  && cmake -DCMAKE_INSTALL_PREFIX:PATH=${CHIA_BLS_PREFIX} \
+    -DCMAKE_PREFIX_PATH=${CHIA_BLS_PREFIX} \
+    -DSTLIB=ON -DSHLIB=OFF -DSTBIN=ON \
+    -DCMAKE_BUILD_TYPE=DEBUG \
+    -DDEBUG=ON \
+    -DOPSYS=LINUX -DCMAKE_SYSTEM_NAME=Linux -DWSIZE=64 \
+    -DCMAKE_C_FLAGS_DEBUG="-g -O1" \
+    .. \
+  && cmake --build . --target install --config Release -- -j6
+
+RUN ls -la ${CHIA_BLS_PREFIX}
+
 # Build stage for Dash
 FROM alpine as dash
 
 COPY --from=berkeleydb /opt /opt
+COPY --from=chiabls /opt /opt
 
 RUN apk --no-cache add autoconf
 RUN apk --no-cache add automake
@@ -41,15 +74,17 @@ RUN apk --no-cache add libtool
 RUN apk --no-cache add linux-headers
 RUN apk --no-cache add protobuf-dev
 RUN apk --no-cache add zeromq-dev
+RUN apk --no-cache add gmp gmp-dev
 
-ENV DASH_VERSION=0.12.3.3
+ENV DASH_VERSION=0.13.0.0-rc4
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
-ENV DASH_SHASUM="dc8035a26228d4963a0fa59f74d787d0b4f79c897e8869f8fd80052bef31a394  v${DASH_VERSION}.tar.gz"
+ENV DASH_SHASUM="b91c7461b44055f720e557ab8ab8cf33a844d46643bb777f379d7ceb05429b6e  v${DASH_VERSION}.tar.gz"
 
 RUN wget https://github.com/dashpay/dash/archive/v${DASH_VERSION}.tar.gz
 RUN echo "${DASH_SHASUM}" | sha256sum -c
 RUN tar -xzf *.tar.gz
 RUN ls -la
+RUN ls -la /opt/chiabls/lib/.*
 
 WORKDIR /dash-${DASH_VERSION}
 
@@ -57,7 +92,10 @@ RUN sed -i '/AC_PREREQ/a\AR_FLAGS=cr' src/univalue/configure.ac
 RUN sed -i '/AX_PROG_CC_FOR_BUILD/a\AR_FLAGS=cr' src/secp256k1/configure.ac
 RUN sed -i s:sys/fcntl.h:fcntl.h: src/compat.h
 RUN ./autogen.sh
-RUN ./configure LDFLAGS=-L`ls -d /opt/db*`/lib/ CPPFLAGS=-I`ls -d /opt/db*`/include/ \
+RUN ./configure CFLAGS="-g -O1" \
+  LDFLAGS="-L/opt/db-4.8.30.NC/lib/ -L/opt/chiabls/lib/" \
+  CPPFLAGS="-I/opt/db-4.8.30.NC/include/ -I/opt/chiabls/include/ -I/opt/chiabls/include/relic/" \
+  CXXFLAGS="-g -O2 -Wall -Wextra -Wformat -Wvla -Wformat-security -Wno-unused-parameter" \
   --prefix=${DASH_PREFIX} \
   --mandir=/usr/share/man \
   --disable-tests \
@@ -78,11 +116,8 @@ RUN strip ${DASH_PREFIX}/lib/libdashconsensus.so.0.0.0
 # Build stage for compiled artifacts
 FROM alpine
 
-LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
-  maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)" \
-  maintainer.3="Jeff Hodges (@jhodges10)" \
-  maintainer.4="Samuel Prado (@skateonrails)"
+LABEL maintainer.0="Jeff Hodges (@jhodges10)" \
+  maintainer.1="Samuel Prado (@skateonrails)"
 
 RUN adduser -S dash
 RUN apk --no-cache add \
@@ -95,7 +130,7 @@ RUN apk --no-cache add \
   su-exec
 
 ENV DASH_DATA=/home/dash/.dashcore
-ENV DASH_VERSION=0.12.3.3
+ENV DASH_VERSION=0.13.0.0-rc4
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
 ENV PATH=${DASH_PREFIX}/bin:$PATH
 

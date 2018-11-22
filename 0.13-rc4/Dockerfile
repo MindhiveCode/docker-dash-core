@@ -1,10 +1,7 @@
 FROM debian:stable-slim
 
-LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
-  maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)" \
-  maintainer.3="Jeff Hodges (@jhodges10)" \
-  maintainer.4="Samuel Prado (@skateonrails)"
+LABEL maintainer.0="Jeff Hodges (@jhodges10)" \
+  maintainer.1="Samuel Prado (@skateonrails)"
 
 RUN useradd -r dash \
   && apt-get update -y \
@@ -25,9 +22,9 @@ RUN curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/dow
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
-ENV DASH_VERSION=0.12.3.3
-ENV DASH_FOLDER_VERSION=0.12.3
-ENV DASH_SHASUM="19191193a8eaf5a10be08eaa3f33ea60c6a2b8848cd8cfeb8aa2046c962b32bd  dashcore-${DASH_VERSION}-x86_64-linux-gnu.tar.gz"
+ENV DASH_VERSION=0.13.0.0-rc4
+ENV DASH_FOLDER_VERSION=0.13.0
+ENV DASH_SHASUM="1d022fcbe543e486d0b87f6bda7593b125e3e317328a52e9a26006737f53bbe5  dashcore-${DASH_VERSION}-x86_64-linux-gnu.tar.gz"
 ENV DASH_DATA=/home/dash/.dashcore \
   PATH=/opt/dashcore-${DASH_FOLDER_VERSION}/bin:$PATH
 
