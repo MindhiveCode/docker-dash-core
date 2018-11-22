@@ -2,7 +2,7 @@
 
 A Dash Core docker image.
 
-[![uphold/dash-core][docker-pulls-image]][docker-hub-url] [![uphold/dash-core][docker-stars-image]][docker-hub-url] [![uphold/dash-core][docker-size-image]][docker-hub-url] [![uphold/dash-core][docker-layers-image]][docker-hub-url]
+[![jefethechefe/docker-dashd-nexus][docker-pulls-image]][docker-hub-url] [![jefethechefe/docker-dashd-nexus][docker-stars-image]][docker-hub-url] [![jefethechefe/docker-dashd-nexus][docker-size-image]][docker-hub-url] [![jefethechefe/docker-dashd-nexus][docker-layers-image]][docker-hub-url]
 
 ## Tags
 
@@ -175,7 +175,7 @@ This image is officially supported on Docker version 1.12, with support for olde
 
 [License information](https://github.com/uphold/docker-dash-core/blob/master/LICENSE) for the [uphold/dash-core][docker-hub-url] docker project.
 
-[docker-hub-url]: https://hub.docker.com/r/uphold/dash-core
+[docker-hub-url]: https://hub.docker.com/r/jefethechefe/docker-dashd-nexus
 [docker-layers-image]: https://img.shields.io/imagelayers/layers/uphold/dash-core/latest.svg?style=flat-square
 [docker-pulls-image]: https://img.shields.io/docker/pulls/uphold/dash-core.svg?style=flat-square
 [docker-size-image]: https://img.shields.io/imagelayers/image-size/uphold/dash-core/latest.svg?style=flat-square
