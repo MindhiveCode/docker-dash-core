@@ -1,4 +1,4 @@
-# uphold/docker-dash-core
+# jefethechefe/docker-dashd-nexus
 
 A Dash Core docker image.
 
@@ -6,10 +6,10 @@ A Dash Core docker image.
 
 ## Tags
 
-- `0.12.3.3-alpine`, `0.12-alpine`, `alpine`, `latest` ([0.12/alpine/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.12/alpine/Dockerfile))
-- `0.12.3.3`, `0.12`  ([0.12/Dockerfile](https://github.com/uphold/docker-dash-core/blob/master/0.12/Dockerfile))
-- `0.13.0.0-rc6-alpine`, `0.13-rc6-alpine` ([0.13-rc6/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13-rc6/alpine/Dockerfile))
-- `0.13.0.0-rc6`, `0.13-rc6`  ([0.13-rc6/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13-rc6/Dockerfile))
+- `0.12.3.3-alpine`, `0.12-alpine`, `alpine`, `latest` ([0.12/alpine/Dockerfile](https://github.com/jefethechefe/docker-dashd-nexus/blob/master/0.12/alpine/Dockerfile))
+- `0.12.3.3`, `0.12`  ([0.12/Dockerfile](https://github.com/jefethechefe/docker-dashd-nexus/blob/master/0.12/Dockerfile))
+- `0.13.0.0-rc7-alpine`, `0.13-rc7-alpine` ([0.13-rc7/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13-rc7/alpine/Dockerfile))
+- `0.13.0.0-rc7`, `0.13-rc7`  ([0.13-rc7/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13-rc7/Dockerfile))
 
 ## What is Dash?
 _from [dashwiki](https://github.com/dashpay/dash/wiki)_
@@ -23,7 +23,7 @@ Dash: A Privacy-Centric Crypto-Currency https://www.dash.org
 This image contains the main binaries from the Dash Core project - `dashd`, `dash-cli` and `dash-tx`. It behaves like a binary, so you can pass any arguments to the image and they will be forwarded to the `dashd` binary:
 
 ```sh
-$ docker run --rm -it uphold/dash-core \
+$ docker run --rm -it jefethechefe/docker-dashd-nexus \
   -printtoconsole \
   -regtest=1 \
   -rpcallowip=172.17.0.0/16 \
@@ -34,7 +34,7 @@ $ docker run --rm -it uphold/dash-core \
 By default, `dashd` will run as user `dash` for security reasons and with its default data dir (`~/.dashcore`). If you'd like to customize where `dash-core` stores its data, you must use the `DASH_DATA` environment variable. The directory will be automatically created with the correct permissions for the `dash` user and `dash-core` is automatically configured to use it.
 
 ```sh
-$ docker run --env DASH_DATA=/var/lib/dash --rm -it uphold/dash-core \
+$ docker run --env DASH_DATA=/var/lib/dash --rm -it jefethechefe/docker-dashd-nexus \
   -printtoconsole \
   -regtest=1
 ```
@@ -42,7 +42,7 @@ $ docker run --env DASH_DATA=/var/lib/dash --rm -it uphold/dash-core \
 You can also mount a directory it in a volume under `/home/dash/.dashcore` in case you want to access it on the host:
 
 ```sh
-$ docker run -v ${PWD}/data:/home/dash/.dashcore -it --rm uphold/dash-core \
+$ docker run -v ${PWD}/data:/home/dash/.dashcore -it --rm jefethechefe/docker-dashd-nexus \
   -printtoconsole \
   -regtest=1
 ```
@@ -51,7 +51,7 @@ You can optionally create a service using `docker-compose`:
 
 ```yml
 dash-core:
-  image: uphold/dash-core
+  image: jefethechefe/docker-dashd-nexus
   command:
     -printtoconsole
     -regtest=1
@@ -70,7 +70,7 @@ The second option is making a remote procedure call using a username and passwor
 Start by launch the Dash Core daemon:
 
 ```sh
-❯ docker run --rm --name dash-server -it uphold/dash-core \
+❯ docker run --rm --name dash-server -it jefethechefe/docker-dashd-nexus \
   -printtoconsole \
   -regtest=1
 ```
@@ -118,7 +118,7 @@ Now that you have your credentials, you need to start the Dash Core daemon with 
 Let's opt for the Docker way:
 
 ```sh
-❯ docker run --rm --name dash-server -it uphold/dash-core \
+❯ docker run --rm --name dash-server -it jefethechefe/docker-dashd-nexus \
   -printtoconsole \
   -regtest=1 \
   -rpcallowip=172.17.0.0/16 \
@@ -130,12 +130,12 @@ Two important notes:
 1. Some shells require escaping the rpcauth line (e.g. zsh), as shown above.
 2. It is now perfectly fine to pass the rpcauth line as a command line argument. Unlike `-rpcpassword`, the content is hashed so even if the arguments would be exposed, they would not allow the attacker to get the actual password.
 
-You can now connect via `dash-cli` or any other [compatible client](https://github.com/uphold/dash-core). You will still have to define a username and password when connecting to the Dash Core RPC server.
+You can now connect via `dash-cli` or any other [compatible client](https://github.com/jefethechefe/docker-dashd-nexus). You will still have to define a username and password when connecting to the Dash Core RPC server.
 
 To avoid any confusion about whether or not a remote call is being made, let's spin up another container to execute `dash-cli` and connect it via the Docker network using the password generated above:
 
 ```sh
-❯ docker run --link dash-server --rm uphold/dash-core dash-cli -rpcconnect=dash-server -regtest -rpcuser=foo -rpcpassword='Yec3WkzEpXGNFRQgTCsdKYp8HO11Z6DaoOY8BvV4YhE=' getmininginfo
+❯ docker run --link dash-server --rm jefethechefe/docker-dashd-nexus dash-cli -rpcconnect=dash-server -regtest -rpcuser=foo -rpcpassword='Yec3WkzEpXGNFRQgTCsdKYp8HO11Z6DaoOY8BvV4YhE=' getmininginfo
 
 {
   "blocks": 0,
@@ -155,13 +155,13 @@ Done!
 
 ## Image variants
 
-The `uphold/dash-core` image comes in multiple flavors:
+The `jefethechefe/docker-dashd-nexus` image comes in multiple flavors:
 
-### `uphold/dash-core:latest`
+### `jefethechefe/docker-dashd-nexus:latest`
 
 Points to the latest release available of Dash Core. Occasionally pre-release versions will be included.
 
-### `uphold/dash-core:<version>`
+### `jefethechefe/docker-dashd-nexus:<version>`
 
 Based on Alpine Linux with Berkeley DB 4.8 (cross-compatible build), targets a specific version branch or release of Dash Core.
 
@@ -173,10 +173,10 @@ This image is officially supported on Docker version 1.12, with support for olde
 
 [License information](https://github.com/dashpay/dash/blob/master/COPYING) for the software contained in this image.
 
-[License information](https://github.com/uphold/docker-dash-core/blob/master/LICENSE) for the [uphold/dash-core][docker-hub-url] docker project.
+[License information](https://github.com/jefethechefe/docker-dashd-nexus/blob/master/LICENSE) for the [jefethechefe/docker-dashd-nexus][docker-hub-url] docker project.
 
 [docker-hub-url]: https://hub.docker.com/r/jefethechefe/docker-dashd-nexus
-[docker-layers-image]: https://img.shields.io/imagelayers/layers/uphold/dash-core/latest.svg?style=flat-square
-[docker-pulls-image]: https://img.shields.io/docker/pulls/uphold/dash-core.svg?style=flat-square
-[docker-size-image]: https://img.shields.io/imagelayers/image-size/uphold/dash-core/latest.svg?style=flat-square
-[docker-stars-image]: https://img.shields.io/docker/stars/uphold/dash-core.svg?style=flat-square
+[docker-layers-image]: https://img.shields.io/imagelayers/layers/jefethechefe/docker-dashd-nexus/latest.svg?style=flat-square
+[docker-pulls-image]: https://img.shields.io/docker/pulls/jefethechefe/docker-dashd-nexus.svg?style=flat-square
+[docker-size-image]: https://img.shields.io/imagelayers/image-size/jefethechefe/docker-dashd-nexus/latest.svg?style=flat-square
+[docker-stars-image]: https://img.shields.io/docker/stars/jefethechefe/docker-dashd-nexus.svg?style=flat-square
