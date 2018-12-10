@@ -8,8 +8,8 @@ before_script:
 env:
   - VERSION=0.12
   - VERSION=0.12/alpine
-  - VERSION=0.13-rc7
-  - VERSION=0.13-rc7/alpine
+  - VERSION=0.13-rc8
+  - VERSION=0.13-rc8/alpine
 
 language: bash
 
