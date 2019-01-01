@@ -1,8 +1,8 @@
-REPOSITORY_NAME := "jefethechefe/docker-dashd-nexus"
-IMAGE := "${REPOSITORY_NAME}:${VERSION/\//-}"
+REPOSITORY_NAME := jefethechefe/docker-dashd-nexus
+IMAGE := ${REPOSITORY_NAME}:${VERSION}
 
 build:
-	docker build -t "${IMAGE}"
+	docker build -t "${IMAGE}" ${BUILD_PATH}
 
 test:
 	docker run "${IMAGE}" --version | grep "Dash Core"

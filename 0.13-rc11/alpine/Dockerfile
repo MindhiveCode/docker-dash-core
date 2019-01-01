@@ -76,9 +76,9 @@ RUN apk --no-cache add protobuf-dev
 RUN apk --no-cache add zeromq-dev
 RUN apk --no-cache add gmp gmp-dev
 
-ENV DASH_VERSION=0.13.0.0-rc10
+ENV DASH_VERSION=0.13.0.0-rc11
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
-ENV DASH_SHASUM="a66fd1099aac21d6c4db8e41910357048c28a56ea5563f60a1bb76ec2ecad0dd  v${DASH_VERSION}.tar.gz"
+ENV DASH_SHASUM="7ed2816030c4d9637cc700674c28ac4fbb5e61aa1b1c16d39a250ebd8dcddd06  v${DASH_VERSION}.tar.gz"
 
 RUN wget https://github.com/dashpay/dash/archive/v${DASH_VERSION}.tar.gz
 RUN echo "${DASH_SHASUM}" | sha256sum -c
@@ -130,7 +130,7 @@ RUN apk --no-cache add \
   su-exec
 
 ENV DASH_DATA=/home/dash/.dashcore
-ENV DASH_VERSION=0.13.0.0-rc10
+ENV DASH_VERSION=0.13.0.0-rc11
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
 ENV PATH=${DASH_PREFIX}/bin:$PATH
 
