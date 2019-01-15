@@ -6,10 +6,8 @@ before_script:
   - IMAGE="dash-core:${VERSION/\//-}"
 
 env:
-  - VERSION=0.12
-  - VERSION=0.12/alpine
-  - VERSION=0.13-rc11
-  - VERSION=0.13-rc11/alpine
+  - VERSION=0.13
+  - VERSION=0.13/alpine
 
 language: bash
 
