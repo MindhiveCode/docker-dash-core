@@ -1,13 +1,15 @@
-REPOSITORY_NAME := jefethechefe/docker-dashd-nexus
-IMAGE := ${REPOSITORY_NAME}:${VERSION}
+IMAGE := jefethechefe/docker-dashd-nexus
 
 build:
-	docker build -t "${IMAGE}" ${BUILD_PATH}
+	IMAGE=${IMAGE} ./scripts/build.sh
 
 test:
-	docker run "${IMAGE}" --version | grep "Dash Core"
+	IMAGE=${IMAGE} ./scripts/test.sh
+
+tags:
+	IMAGE=${IMAGE} ./scripts/tags.sh
 
 publish:
-	docker push ${REPOSITORY_NAME}
+	docker push ${IMAGE}
 
 .PHONY: force
