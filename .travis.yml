@@ -9,6 +9,10 @@ env:
   - BUILD_PATH=0.13
   - BUILD_PATH=0.13/alpine
 
+branches:
+  only:
+  - master
+
 script:
   - make build
   - make test
