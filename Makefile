@@ -1,13 +1,13 @@
 IMAGE := jefethechefe/docker-dashd-nexus
 
 build:
-	IMAGE=${IMAGE} ./scripts/build.sh
+	IMAGE=${IMAGE} bash scripts/build.sh
 
 test:
-	IMAGE=${IMAGE} ./scripts/test.sh
+	IMAGE=${IMAGE} bash scripts/test.sh
 
 tags:
-	IMAGE=${IMAGE} ./scripts/tags.sh
+	IMAGE=${IMAGE} bash scripts/tags.sh
 
 publish:
 	docker push ${IMAGE}
