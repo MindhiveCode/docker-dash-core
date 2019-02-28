@@ -3,9 +3,11 @@ language: bash
 services: docker
 
 env:
+  global:
+  - VERSION=0.13.0.0
+  matrix:
   - BUILD_PATH=0.13
   - BUILD_PATH=0.13/alpine
-  - VERSION=0.13.0.0
 
 script:
   - make build
