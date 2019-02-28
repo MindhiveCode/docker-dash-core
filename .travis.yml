@@ -1,18 +1,27 @@
+sudo: required
+language: bash
+services: docker
+
+env:
+  global:
+  - VERSION=0.13.0.0
+  matrix:
+  - BUILD_PATH=0.13
+  - BUILD_PATH=0.13/alpine
+
+script:
+  - make build
+  - make test
+
 after_script:
   - docker images
 
-before_script:
-  - cd "$VERSION"
-  - IMAGE="dash-core:${VERSION/\//-}"
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - make tags
 
-env:
-  - VERSION=0.13
-  - VERSION=0.13/alpine
-
-language: bash
-
-script:
-  - docker build -t "$IMAGE" .
-  - docker run "$IMAGE" --version | grep "Dash Core"
-
-services: docker
+deploy:
+  provider: script
+  script: make publish
+  on:
+    branch: master
