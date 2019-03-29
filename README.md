@@ -9,6 +9,9 @@ A Dash Core docker image.
 - `0.13.2.0-alpine`, `0.13-alpine`, `alpine`, `latest` ([0.13/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13/alpine/Dockerfile))
 - `0.13.2.0`, `0.13`  ([0.13/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13/Dockerfile))
 
+- `0.14.0.0-rc1-alpine`, `0.14-alpine` ([0.14-rc1/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14-rc1/alpine/Dockerfile))
+- `0.14.0.0-rc1`, `0.14-rc1`  ([0.14-rc1/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14-rc1/Dockerfile))
+
 ## What is Dash?
 _from [dashwiki](https://github.com/dashpay/dash/wiki)_
 
