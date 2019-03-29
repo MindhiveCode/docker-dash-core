@@ -4,18 +4,10 @@ services: docker
 
 matrix:
   include:
-    - env:
-        global:
-        - VERSION=0.13.2.0
-        matrix:
-        - BUILD_PATH=0.13
-        - BUILD_PATH=0.13/alpine
-    - env:
-        global:
-        - VERSION=0.14.0.0-rc1
-        matrix:
-        - BUILD_PATH=0.14-rc1
-        - BUILD_PATH=0.14-rc1/alpine
+    - env: VERSION=0.13.2.0 BUILD_PATH=0.13
+    - env: VERSION=0.13.2.0 BUILD_PATH=0.13/alpine
+    - env: VERSION=0.14.0.0-rc1 BUILD_PATH=0.14-rc1
+    - env: VERSION=0.14.0.0-rc1 BUILD_PATH=0.14-rc1/alpine
 
 branches:
   only:
