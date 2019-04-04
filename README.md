@@ -6,8 +6,8 @@ A Dash Core docker image.
 
 ## Tags
 
-- `0.13.2.0-alpine`, `0.13-alpine`, `alpine`, `latest` ([0.13/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13/alpine/Dockerfile))
-- `0.13.2.0`, `0.13`  ([0.13/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13/Dockerfile))
+- `0.13.3.0-alpine`, `0.13-alpine`, `alpine`, `latest` ([0.13/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13/alpine/Dockerfile))
+- `0.13.3.0`, `0.13`  ([0.13/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.13/Dockerfile))
 
 - `0.14.0.0-rc2-alpine`, `0.14-rc2-alpine` ([0.14-rc2/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14-rc2/alpine/Dockerfile))
 - `0.14.0.0-rc2`, `0.14-rc2`  ([0.14-rc2/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14-rc2/Dockerfile))
