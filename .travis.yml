@@ -4,8 +4,8 @@ services: docker
 
 matrix:
   include:
-    - env: VERSION=0.13.2.0 BUILD_PATH=0.13
-    - env: VERSION=0.13.2.0 BUILD_PATH=0.13/alpine
+    - env: VERSION=0.13.3.0 BUILD_PATH=0.13
+    - env: VERSION=0.13.3.0 BUILD_PATH=0.13/alpine
     - env: VERSION=0.14.0.0-rc2 BUILD_PATH=0.14-rc2
     - env: VERSION=0.14.0.0-rc2 BUILD_PATH=0.14-rc2/alpine
 
