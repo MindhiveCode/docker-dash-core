@@ -78,7 +78,7 @@ RUN apk --no-cache add gmp gmp-dev
 
 ENV DASH_VERSION=0.13.3.0
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
-ENV DASH_SHASUM="8612a3ff5cbd1d7a6c328da4cb6809aa4166591c907096d778c8d6fd953017ba  v${DASH_VERSION}.tar.gz"
+ENV DASH_SHASUM="7ccf39aa23441e3a90274e3d266b8ca4e9d1fda334216e63037758f0ca51179b  v${DASH_VERSION}.tar.gz"
 
 RUN wget https://github.com/dashpay/dash/archive/v${DASH_VERSION}.tar.gz
 RUN echo "${DASH_SHASUM}" | sha256sum -c
