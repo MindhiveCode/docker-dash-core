@@ -22,9 +22,9 @@ RUN curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/dow
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
-ENV DASH_VERSION=0.14.0.0-rc3
+ENV DASH_VERSION=0.14.0.0-rc4
 ENV DASH_FOLDER_VERSION=0.14.0
-ENV DASH_SHASUM="fb8f7011b5803f17c0b00439967aea3f0307887497d519f80febf72466e3a825  dashcore-${DASH_VERSION}-x86_64-linux-gnu.tar.gz"
+ENV DASH_SHASUM="284ad86da0a5fcc691093b92738a9ee6da4c5ca9dc0f6a6cd1e7cfa2b907e453  dashcore-${DASH_VERSION}-x86_64-linux-gnu.tar.gz"
 ENV DASH_DATA=/home/dash/.dashcore \
   PATH=/opt/dashcore-${DASH_FOLDER_VERSION}/bin:$PATH
 
