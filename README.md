@@ -6,8 +6,8 @@ A Dash Core docker image.
 
 ## Tags
 
-- `0.14.0.3-alpine`, `0.14-alpine` ([0.14/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14/alpine/Dockerfile))
-- `0.14.0.3`, `0.14`  ([0.14/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14/Dockerfile))
+- `0.14.0.4-alpine`, `0.14-alpine` ([0.14/alpine/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14/alpine/Dockerfile))
+- `0.14.0.4`, `0.14`  ([0.14/Dockerfile](https://github.com/MindhiveCode/docker-dash-core/blob/master/0.14/Dockerfile))
 
 ## What is Dash?
 _from [dashwiki](https://github.com/dashpay/dash/wiki)_
