@@ -12,7 +12,7 @@ RUN useradd -r dash \
   && curl https://keybase.io/udjinm6/pgp_keys.asc | gpg --import \
   && curl https://keybase.io/nmarley/pgp_keys.asc | gpg --import \
   # Adding gpg for gosu
-  && gpg --batch --keyserver do.random.io --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
+  && gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
 
 ENV GOSU_VERSION=1.11
 
@@ -22,9 +22,9 @@ RUN curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/dow
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
-ENV DASH_VERSION=0.14.0.4
+ENV DASH_VERSION=0.14.0.5
 ENV DASH_FOLDER_VERSION=0.14.0
-ENV DASH_SHASUM="15d111f4de3f49a67dba879d680b690c941f86ad2e65e3b6b3b9b57eb37d1b42  dashcore-${DASH_VERSION}-x86_64-linux-gnu.tar.gz"
+ENV DASH_SHASUM="c40f579d30f523bf0d220e4c02ed58075cf2bd4ed9a9c73e72ac2b7420728f6a  dashcore-${DASH_VERSION}-x86_64-linux-gnu.tar.gz"
 ENV DASH_DATA=/home/dash/.dashcore \
   PATH=/opt/dashcore-${DASH_FOLDER_VERSION}/bin:$PATH
 
