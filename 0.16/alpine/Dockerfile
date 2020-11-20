@@ -79,9 +79,10 @@ RUN apk --no-cache add libexecinfo-dev
 
 ENV DASH_VERSION=0.16.1.1
 ENV DASH_PREFIX=/opt/dash-${DASH_VERSION}
-ENV DASH_SHASUM="8803928bd18e9515f1254f97751eb6e537a084d66111ce7968eafb23e26bf3a5  v${DASH_VERSION}.tar.gz"
+ENV DASH_SHASUM="98bc0f50c65ca1a149c95f1b87ae926457e0e0623af7a1e2a7e345fdfe0eecc8  v${DASH_VERSION}.tar.gz"
 
 RUN wget https://github.com/dashpay/dash/archive/v${DASH_VERSION}.tar.gz
+RUN echo "${DASH_SHASUM}"
 RUN echo "${DASH_SHASUM}" | sha256sum -c
 RUN tar -xzf *.tar.gz
 RUN ls -la
